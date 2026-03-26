@@ -30,17 +30,6 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* MOBILE OVERRIDE: Remove splash screen only on mobile */
-@media (max-width: 768px) {
-    #loading-screen {
-        display: none !important; /* Forces the logo to stay hidden */
-        visibility: hidden !important;
-    }
-    #app-frame {
-        display: block !important; /* Forces the portal content to show immediately */
-    }
-}
     z-index: 9999;
     opacity: 1;
     visibility: visible;
@@ -63,16 +52,4 @@ body, html {
 /* Hide the old text to keep it clean like Google Drive */
 .splash-text {
     display: none;
-}
-
-/* ELIMINATE DOUBLE LOGO ON MOBILE */
-@media (max-width: 768px) {
-    #loading-screen {
-        display: none !important;
-        opacity: 0 !important;
-        visibility: hidden !important;
-    }
-    #app-frame {
-        display: block !important;
-    }
 }
