@@ -19,7 +19,7 @@ iframe.onload = function() {
         iframe.style.display = 'block';
         // Completely remove from DOM after fade for performance
         setTimeout(() => loadingScreen.remove(), 500);
-    }, 1500); // 1.5 seconds shows the logo long enough to feel professional
+    }, 800); // Reduced delay for a snappier feel
 };
 
 // Prevent accidental pulldown refresh on mobile
