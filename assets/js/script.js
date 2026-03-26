@@ -1,5 +1,5 @@
 // CONFIGURATION
-const API_URL = 'YOUR_DEPLOYED_WEB_APP_URL'; // Replace with your GAS Web App URL
+const API_URL = 'https://script.google.com/a/~/macros/s/AKfycbyecQNNH8ZGTQjcwF-34_AGc0Njw1Bn9AL37oKQRYWIoaHryMAjVI0xlVr25fQFUylJrw/exec'; // Replace with your GAS Web App URL
 
 // UNIVERSAL FETCH WRAPPER
 async function callAPI(action, data = {}) {
