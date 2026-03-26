@@ -1,4 +1,4 @@
-const CACHE_NAME = 'shiksha-v2'; // Changed from v1 to v2
+const CACHE_NAME = 'shiksha-v3'; // Changed from v1 to v2
 const ASSETS = [
     'index.html',
     'style.css',
