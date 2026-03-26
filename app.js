@@ -12,14 +12,21 @@ const iframe = document.getElementById('app-frame');
 const loadingScreen = document.getElementById('loading-screen');
 
 iframe.onload = function() {
-    // Smooth fade transition
-    setTimeout(() => {
-        loadingScreen.style.opacity = '0';
-        loadingScreen.style.visibility = 'hidden';
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+        // MOBILE: Remove immediately with no delay or animation
+        loadingScreen.remove();
         iframe.style.display = 'block';
-        // Completely remove from DOM after fade for performance
-        setTimeout(() => loadingScreen.remove(), 500);
-    }, 800); // Reduced delay for a snappier feel
+    } else {
+        // DESKTOP: Keep the original smooth fade transition
+        setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.visibility = 'hidden';
+            iframe.style.display = 'block';
+            setTimeout(() => loadingScreen.remove(), 500);
+        }, 800);
+    }
 };
 
 // Prevent accidental pulldown refresh on mobile
