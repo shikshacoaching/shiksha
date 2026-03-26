@@ -7,16 +7,28 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Handle Iframe Loading
+// Handle Modern Splash Screen Transition
 const iframe = document.getElementById('app-frame');
 const loadingScreen = document.getElementById('loading-screen');
 
+// We want the splash to show for at least 2.5 seconds, 
+// even if the iframe loads faster, to maintain the "App" feel.
+const minDisplayTime = 2500; 
+const startTime = Date.now();
+
 iframe.onload = function() {
-    // Small delay for smooth transition
+    const elapsedTime = Date.now() - startTime;
+    const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+
     setTimeout(() => {
-        loadingScreen.style.display = 'none';
+        loadingScreen.classList.add('fade-out');
         iframe.style.display = 'block';
-    }, 500);
+        
+        // Remove from DOM after transition to save memory
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }, remainingTime);
 };
 
 // Prevent accidental pulldown refresh on mobile
