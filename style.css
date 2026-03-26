@@ -30,6 +30,17 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    /* MOBILE OVERRIDE: Remove splash screen only on mobile */
+@media (max-width: 768px) {
+    #loading-screen {
+        display: none !important; /* Forces the logo to stay hidden */
+        visibility: hidden !important;
+    }
+    #app-frame {
+        display: block !important; /* Forces the portal content to show immediately */
+    }
+}
     z-index: 9999;
     opacity: 1;
     visibility: visible;
