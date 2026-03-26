@@ -12,11 +12,14 @@ const iframe = document.getElementById('app-frame');
 const loadingScreen = document.getElementById('loading-screen');
 
 iframe.onload = function() {
-    // Small delay for smooth transition
+    // Smooth fade transition
     setTimeout(() => {
-        loadingScreen.style.display = 'none';
+        loadingScreen.style.opacity = '0';
+        loadingScreen.style.visibility = 'hidden';
         iframe.style.display = 'block';
-    }, 500);
+        // Completely remove from DOM after fade for performance
+        setTimeout(() => loadingScreen.remove(), 500);
+    }, 1500); // 1.5 seconds shows the logo long enough to feel professional
 };
 
 // Prevent accidental pulldown refresh on mobile
