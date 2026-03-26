@@ -1,10 +1,22 @@
-const cacheName = 'shiksha-v2';
-const files = ['./', './index.html', './assets/css/style.css', './assets/js/script.js'];
+const CACHE_NAME = 'shiksha-v1';
+const ASSETS = [
+    'index.html',
+    'style.css',
+    'app.js',
+    'manifest.json',
+    'offline.html',
+    'icon-192.png',
+    'icon-512.png'
+];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(cacheName).then(cache => cache.addAll(files)));
+    e.waitUntil(
+        caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+    );
 });
 
 self.addEventListener('fetch', e => {
-  e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
+    e.respondWith(
+        fetch(e.request).catch(() => caches.match(e.request) || caches.match('offline.html'))
+    );
 });
