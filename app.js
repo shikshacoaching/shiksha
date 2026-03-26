@@ -11,16 +11,23 @@ if ('serviceWorker' in navigator) {
 const iframe = document.getElementById('app-frame');
 const loadingScreen = document.getElementById('loading-screen');
 
-iframe.onload = function() {
-    // Smooth fade transition
-    setTimeout(() => {
-        loadingScreen.style.opacity = '0';
-        loadingScreen.style.visibility = 'hidden';
-        iframe.style.display = 'block';
-        // Completely remove from DOM after fade for performance
-        setTimeout(() => loadingScreen.remove(), 500);
-    }, 800); // Reduced delay for a snappier feel
-};
+const isMobile = window.innerWidth <= 768;
+
+if (isMobile) {
+    // SUPER FAST MOBILE START: No delays, no waiting.
+    if (loadingScreen) loadingScreen.remove();
+    iframe.style.display = 'block';
+} else {
+    // DESKTOP: Keep the nice fade-in effect
+    iframe.onload = function() {
+        setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.visibility = 'hidden';
+            iframe.style.display = 'block';
+            setTimeout(() => loadingScreen.remove(), 500);
+        }, 800);
+    };
+}
 
 // Prevent accidental pulldown refresh on mobile
 window.addEventListener('load', function() {
